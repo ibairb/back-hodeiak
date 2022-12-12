@@ -18,10 +18,8 @@ export class User {
     @Prop({require:true})
     status:string;
     hourCost:number;
-
-    
-
-
+    @Prop({require:true})
+    phone:number
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

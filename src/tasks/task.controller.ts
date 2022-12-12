@@ -6,7 +6,7 @@ import { Task } from './task.schema';
 @Controller('tasks')
 export class TaskController {
 
-    constructor(private readonly TaskService:TaskService) { }
+    constructor(private readonly TaskService:TaskService) {}
 
 
     @Get()
