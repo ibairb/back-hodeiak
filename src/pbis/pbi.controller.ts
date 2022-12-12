@@ -1,7 +1,7 @@
 import { Body, Controller, Get, Post, Param, Put, Delete, Res, ParseIntPipe } from '@nestjs/common';
-import { PbiService } from './pbis.service';
-import { PbiDto } from './pbis.dto';
-import { Pbi } from './pbis.schema';
+import { PbiService } from './pbi.service';
+import { PbiDto } from './pbi.dto';
+import { Pbi } from './pbi.schema';
 
 @Controller('pbis')
 export class PbiController {
