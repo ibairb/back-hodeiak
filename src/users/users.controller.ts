@@ -10,7 +10,6 @@ export class UsersController {
     async createUser(@Body() body: UserDTO):Promise<any> {
         
         return await this.userService.createUser(body);
-
     }
 
     @Get()
@@ -38,7 +37,6 @@ export class UsersController {
         const user = await this.userService.getUser(id);
         if (!user) throw new NotFoundException('User does not exist!');
         return res.status(HttpStatus.OK).json(user);
-    }
-    
+    } 
 }
 
