@@ -19,7 +19,7 @@ export class ProjectController {
 
     }//getProject
 
-    @Post()
+    @Post("/create")
     async createProject(@Body() body: ProjectDto):Promise<any> {
                 
          await this.ProjectService.createProject(body);

@@ -27,7 +27,7 @@ export class EpicController {
         });
     }
 
-    @Put(':id')
+    @Put('/update/:id')
     updateUser(@Body() body: EpicDTO, @Param("id") id:string):void {
         this.epicService.updateEpic(id,body)  
     }
