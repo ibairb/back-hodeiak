@@ -5,9 +5,10 @@ export class Project{
     @Prop({unique:true, require:true})
     projectname: string;
     @Prop({require:true})
-    status: string;
-    users:[];
+    status:string;
     clientname:string;
+    @Prop()
+    epic:[]
   
 }
 export const ProjectSchema = SchemaFactory.createForClass(Project);
