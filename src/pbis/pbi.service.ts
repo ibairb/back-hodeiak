@@ -1,8 +1,8 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { PbiDto } from './pbis.dto';
-import { Pbi, PbiDocument } from './pbis.schema';
+import { PbiDto } from './pbi.dto';
+import { Pbi, PbiDocument } from './pbi.schema';
 
 @Injectable()
 export class PbiService {

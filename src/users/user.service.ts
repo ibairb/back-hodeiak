@@ -2,7 +2,7 @@ import { Body, Delete, HttpStatus, Injectable, NotFoundException, Res } from '@n
 import { Model } from 'mongoose';
 import { InjectModel } from "@nestjs/mongoose";
 import { User, UserDocument } from './user.schema';
-import { UserDTO } from "./dto/user.dto";
+import { UserDTO } from "./user.dto";
 
 
 @Injectable()
