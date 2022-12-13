@@ -32,7 +32,7 @@ dotenv.config()
 ,MongooseModule.forFeature([{name:User.name,schema:UserSchema},{name:Epic.name,schema:EpicSchema},
   {name:Client.name,schema:ClientSchema},{name:Project.name,schema:ProjectSchema},{name:Feature.name,schema:FeatureSchema},
   {name:Pbi.name,schema:PbiSchema},{name:Task.name,schema:TaskSchema}])],
-  controllers: [AppController, UsersController, EpicController,ProjectController,PbiController,TaskController,FeatureController],
-  providers: [AppService, UsersService, EpicService,ProjectService,PbiService,TaskService,FeatureService],
+  controllers: [AppController, UsersController, EpicController,ProjectController,PbiController,TaskController,FeatureController,ClientController],
+  providers: [AppService, UsersService, EpicService,ProjectService,PbiService,TaskService,FeatureService,ClientService],
 })
 export class AppModule {}
