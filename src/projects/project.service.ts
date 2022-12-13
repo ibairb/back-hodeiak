@@ -33,7 +33,7 @@ export class ProjectService {
 
     }//createProject
     async updateProject(projectname: string, body: any):Promise<any>  {
-
+        // await this.projectModel.updateOne({ projectname }, { $set: {users: body.users} });
         await this.projectModel.updateOne({ projectname }, { $set: body });
         return { messageCreated: `PROJECT update` }
     }//updateProject

@@ -22,15 +22,14 @@ export class ProjectController {
     @Post()
     async createProject(@Body() body: ProjectDto):Promise<any> {
                 
-         await this.ProjectService.createProject(body);
+        await this.ProjectService.createProject(body);
 
         return {messageCreated:`Project created`}
     }
 
     @Put(":projectname")
-    updateProject(@Body() body: ProjectDto, @Param('projectname') projectname) : void {
-        
-        this.ProjectService.updateProject(projectname,body);
+    updateProject(@Body() body: ProjectDto, @Param('projectname') projectname) : any {
+        return this.ProjectService.updateProject(projectname,body);
     }
        
     @Delete(':projectname')

@@ -4,11 +4,17 @@ export type projectDocument = Project & Document;
 export class Project{  
     @Prop({unique:true, require:true})
     projectname: string;
+
     @Prop({require:true})
     status:string;
+
+    @Prop()
     clientname:string;
+
     @Prop()
     epics:[]
-  
+
+    @Prop()
+    users:[]
 }
 export const ProjectSchema = SchemaFactory.createForClass(Project);
