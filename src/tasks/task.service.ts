@@ -12,8 +12,8 @@ export class TaskService {
 
     ) { }
     
-    async getTask(taskname: string):Promise<Task|Object> {
-        let task= await this.taskModel.findOne({taskname:taskname});
+    async getTask(title: string):Promise<Task|Object> {
+        let task= await this.taskModel.findOne({name:title});
         if(task==null) return {error:"Task does not exit"} 
         else  return task;
     }//getTask
