@@ -2,13 +2,13 @@ import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 export type projectDocument = Project & Document;
 @Schema()
 export class Project{  
-    @Prop({unique:true, require:true})
+    @Prop()
     projectname: string;
 
-    @Prop({require:true})
+    @Prop()
     title: string;
 
-    @Prop({require:true})
+    @Prop()
     start: string;
 
     @Prop()
