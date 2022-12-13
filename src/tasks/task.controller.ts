@@ -36,9 +36,9 @@ export class TaskController {
         this.TaskService.updateTask(id,body);
     }
 
-    @Delete(":id")
-    deleteUser(@Param('id',new ParseIntPipe({errorHttpStatusCode:400})) id: string): void {
-        this.TaskService.deleteTask(id);
+    @Delete()
+    async deleteUser(@Body() body: TaskDto):Promise<any> {
+        await this.TaskService.deleteTask(body);
     }
 
 }//class TaskController

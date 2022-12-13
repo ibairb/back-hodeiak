@@ -2,10 +2,13 @@ import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 export type projectDocument = Project & Document;
 @Schema()
 export class Project{  
-    @Prop({require:true})
+    @Prop()
+    projectname: string;
+
+    @Prop()
     title: string;
 
-    @Prop({require:true})
+    @Prop()
     start: string;
 
     @Prop()
@@ -15,7 +18,9 @@ export class Project{
     clientname:string;
 
     @Prop()
-    epic:[]
-  
+    epics:[]
+
+    @Prop()
+    users:[]
 }
 export const ProjectSchema = SchemaFactory.createForClass(Project);

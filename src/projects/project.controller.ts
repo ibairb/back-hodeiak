@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post, Param, Put, Delete, Res, ParseIntPipe } from '@nestjs/common';
+import { Body, Controller,HttpStatus, Get, Post, Param, Put, Delete, Res, ParseIntPipe } from '@nestjs/common';
 import { ProjectService } from './project.service';
 import { ProjectDto } from './project.dto';
 import { Project } from './project.schema';
@@ -22,22 +22,21 @@ export class ProjectController {
     @Post("/create")
     async createProject(@Body() body: ProjectDto):Promise<any> {
                 
-         await this.ProjectService.createProject(body);
+        await this.ProjectService.createProject(body);
 
         return {messageCreated:`Project created`}
     }
 
-    @Put(":id")
-    updateProject(@Param('id', new ParseIntPipe({errorHttpStatusCode:406})) id: string, @Body() body: ProjectDto): void {
-        
-        this.ProjectService.updateProject(id,body);
+    @Put(":projectname")
+    updateProject(@Body() body: ProjectDto, @Param('projectname') projectname) : any {
+        return this.ProjectService.updateProject(projectname,body);
     }
-   
-    @Delete(":id")
-    deleteProject(@Param('id',new ParseIntPipe({errorHttpStatusCode:400})) id: string): void {
-        this.ProjectService.deleteProject(id); 
+       
+    @Delete(':projectname')
+    async deleteUser(@Param("projectname") projectname) {
+        const projectDeleted = await this.ProjectService.deleteProject(projectname);
+      
     }
-
 }//class ProjectController
 
 

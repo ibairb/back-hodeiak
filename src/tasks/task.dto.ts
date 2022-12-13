@@ -1,5 +1,5 @@
 export class TaskDto {
-    taskname:string
+   
     title: string
     description:string
     user:string

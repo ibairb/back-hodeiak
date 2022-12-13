@@ -3,8 +3,7 @@ export type taskDocument = Task & Document;
 @Schema()
 export class Task{
    
-    @Prop({require:true})
-    taskname: string;
+    
     @Prop()
     title:string;
     @Prop()
