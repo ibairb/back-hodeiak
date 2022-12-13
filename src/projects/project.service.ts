@@ -32,24 +32,21 @@ export class ProjectService {
         return { messageCreated: `PROJECT CREATED` }
 
     }//createProject
-    async updateProject(id: string, body: any) {
+    async updateProject(projectname: string, body: any):Promise<any>  {
 
-        await this.projectModel.updateOne({ id }, { $set: body });
-
+        await this.projectModel.updateOne({ projectname }, { $set: body });
+        return { messageCreated: `PROJECT update` }
     }//updateProject
 
-    async deleteProject(name: string) {
-        await this.projectModel.deleteOne({ name });
+    async deleteProject(projectname: string) {
+        await this.projectModel.deleteOne({projectname:projectname});
 
     }//deleteProject
-    async removeUser(name: string, username:string) {
+    //Change atributes
+    async removeUser(name: string) {
       let proyecto=this.projectModel.findOne({ name });
-      //proyecto.users
-
-    }//deleteProject
-
-
-
+      
+    }//removeUser
 
 }//class ProjectService
 

@@ -8,7 +8,7 @@ export class Project{
     status:string;
     clientname:string;
     @Prop()
-    epic:[]
+    epics:[]
   
 }
 export const ProjectSchema = SchemaFactory.createForClass(Project);

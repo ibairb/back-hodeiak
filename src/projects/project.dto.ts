@@ -2,5 +2,6 @@ export class ProjectDto {
     projectname:string
     status:string
     users:[]
-    clientname:string     
+    clientname:string 
+    epics:[]    
 }//class ProjectDto
