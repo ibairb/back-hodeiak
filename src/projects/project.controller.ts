@@ -14,7 +14,7 @@ export class ProjectController {
     }//getProjects
 
     @Get("/:projectname")
-    async getProject(@Param('projectname') projectname:string, ) : Promise<Project|Object>{
+    async getProject(@Param('projectname') projectname:string ) : Promise<Project|Object>{
         return await  this.ProjectService.getProject(projectname);
 
     }//getProject

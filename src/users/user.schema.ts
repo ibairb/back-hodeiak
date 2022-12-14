@@ -17,9 +17,10 @@ export class User {
     image:string;
     @Prop({require:true})
     status:string;
+    @Prop()
     hourCost:number;
-    @Prop({require:true})
-    phone:number
+    @Prop()
+    projects:[];
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

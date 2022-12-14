@@ -6,17 +6,28 @@ import { EpicDTO } from "./epic.dto";
 export class EpicController {
     constructor(private epicService: EpicService) {}
 
-        @Post('/create')
+    @Get()
+    async getEpics(@Res() res) {
+        const epics = await this.epicService.getEpics();
+        return res.status(HttpStatus.OK).json(epics);
+
+    }
+    @Get(':id')
+    async getEpic(@Res() res, @Param('id') id) {
+        const epic = await this.epicService.getEpic(id);
+        if (!epic) throw new NotFoundException('Epic does not exist!');
+        return res.status(HttpStatus.OK).json(epic);
+    } 
+
+
+    @Post('/create')
     async createEpic(@Body() body: EpicDTO):Promise<any> {
         
         return await this.epicService.createEpic(body);
     }
 
-    @Get()
-    async getEpics(@Res() res) {
-        const epics = await this.epicService.getEpics();
-        return res.status(HttpStatus.OK).json(epics);
-    }
+   
+   
     @Delete('/delete/:id')
     async deleteEpic(@Res() res,@Param("id") id) {
         const epicDeleted = await this.epicService.deleteEpic(id);
@@ -32,11 +43,6 @@ export class EpicController {
         this.epicService.updateEpic(id,body)  
     }
 
-    @Get(':id')
-    async getEpic(@Res() res, @Param('id') id) {
-        const epic = await this.epicService.getEpic(id);
-        if (!epic) throw new NotFoundException('Epic does not exist!');
-        return res.status(HttpStatus.OK).json(epic);
-    } 
+   
 }
 
