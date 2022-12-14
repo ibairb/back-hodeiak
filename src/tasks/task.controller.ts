@@ -15,11 +15,11 @@ export class TaskController {
 
     }//getTasks
 
-    @Get("/:title")
-    async getTask(@Param('title') title:string) : Promise<Task|Object>{
-        return await  this.TaskService.getTask(title);
+    @Get("/:taskname")
+    async getTask(@Param('taskname') taskname:string) : Promise<Task|Object>{
+        return await  this.TaskService.getTask(taskname);
 
-    }//getTask
+    }//getUser
 
 
     @Post()
@@ -36,9 +36,9 @@ export class TaskController {
         this.TaskService.updateTask(id,body);
     }
 
-    @Delete(":id")
-    deleteUser(@Param('id',new ParseIntPipe({errorHttpStatusCode:400})) id: string): void {
-        this.TaskService.deleteTask(id);
+    @Delete()
+    async deleteUser(@Body() body: TaskDto):Promise<any> {
+        await this.TaskService.deleteTask(body);
     }
 
 }//class TaskController
