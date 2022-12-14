@@ -1,7 +1,7 @@
 import { Body, Delete, Get, HttpStatus, NotFoundException, Param, Post, Put, Query, Res } from '@nestjs/common';
 import { Controller } from '@nestjs/common';
-import { UsersService } from "./users.service";
-import { UserDTO } from "./dto/user.dto";
+import { UsersService } from "./user.service";
+import { UserDTO } from "./user.dto";
 @Controller('users')
 export class UsersController {
     constructor(private userService: UsersService) {}

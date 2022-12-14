@@ -15,11 +15,11 @@ export class TaskController {
 
     }//getTasks
 
-    @Get("/:taskname")
-    async getTask(@Param('taskname') taskname:string) : Promise<Task|Object>{
-        return await  this.TaskService.getTask(taskname);
+    @Get("/:title")
+    async getTask(@Param('title') title:string) : Promise<Task|Object>{
+        return await  this.TaskService.getTask(title);
 
-    }//getUser
+    }//getTask
 
 
     @Post()
