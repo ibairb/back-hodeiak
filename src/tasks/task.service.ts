@@ -10,7 +10,7 @@ export class TaskService {
     constructor(
         @InjectModel(Task.name) private taskModel: Model<taskDocument>
 
-    ) { }
+    ) {}
     
     async getTask(title: string):Promise<Task|Object> {
         let task= await this.taskModel.findOne({name:title});
@@ -34,8 +34,8 @@ export class TaskService {
 
     }//updateTask
 
-    async deleteTask(id: string) {
-        await this.taskModel.deleteOne({ id });
+    async deleteTask(body: TaskDto): Promise<any>{
+        await this.taskModel.deleteOne({title: body.title});
     }//deleteTask
 }//class TaskService
 
