@@ -6,5 +6,5 @@ export class TaskDto {
     start: string
     end: string
     color:string
-    // color: '#ff9900'  
+      
 }//class TaskDto

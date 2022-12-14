@@ -38,15 +38,28 @@ export class ProjectService {
         return { messageCreated: `PROJECT update` }
     }//updateProject
 
-    async deleteProject(projectname: string) {
+    async deleteProject(projectname: string):Promise<any> {
         await this.projectModel.deleteOne({projectname:projectname});
 
     }//deleteProject
+
+
     //Change atributes
-    async removeUser(name: string) {
-      let proyecto=this.projectModel.findOne({ name });
+    // async addUserProject(projectname: string, username:string,epicIndex,featureIndex,pbiIndex,taskIndex) {
+    //   let project: Project = await this.projectModel.findOne({ projectname });
+    //   project.epics[epicIndex].features[featureIndex].productBacklogItem[pbiIndex].task[taskIndex].user=username;
+    //   await this.projectModel.updateOne({ projectname }, { $set: {user:project.epics[epicIndex].features[featureIndex].productBacklogItem[pbiIndex].task[taskIndex].user } });
+    //   return { messageCreated: `USER ADDED TO PROJECT` } 
+    // }//addUserProject
+
+
+    // async deleteUserProject(projectname: string,usrname:string, epicIndex,featureIndex,pbiIndex,taskIndex   ) {
+    //     let project=await this.projectModel.findOne({ projectname });
+    //     project=project.epics[epicIndex].features[featureIndex].productBacklogItem[pbiIndex].task[taskIndex].filter();
+    //     await this.projectModel.updateOne({ projectname }, { $set: {user:project.epics[epicIndex].features[featureIndex].productBacklogItem[pbiIndex].task[taskIndex].user } });
+    //     return { messageCreated: `USER DELETED FROM PROJECT` } 
       
-    }//removeUser
+    //   }//addUserProject
 
 }//class ProjectService
 
