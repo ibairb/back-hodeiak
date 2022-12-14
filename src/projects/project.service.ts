@@ -53,14 +53,6 @@ export class ProjectService {
     // }//addUserProject
 
 
-    // async deleteUserProject(projectname: string,usrname:string, epicIndex,featureIndex,pbiIndex,taskIndex   ) {
-    //     let project=await this.projectModel.findOne({ projectname });
-    //     project=project.epics[epicIndex].features[featureIndex].productBacklogItem[pbiIndex].task[taskIndex].filter();
-    //     await this.projectModel.updateOne({ projectname }, { $set: {user:project.epics[epicIndex].features[featureIndex].productBacklogItem[pbiIndex].task[taskIndex].user } });
-    //     return { messageCreated: `USER DELETED FROM PROJECT` } 
-      
-    //   }//addUserProject
-
 }//class ProjectService
 
 
