@@ -1,26 +1,61 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 export type projectDocument = Project & Document;
 @Schema()
-export class Project{  
-    @Prop({unique:true, require:true})
+export class Project {
+    @Prop({ unique: true, require: true })
     projectname: string;
 
-    @Prop({require:true})
+    @Prop({ require: true })
+    status: string;
+
+    @Prop()
+    clientname: string;
+
+    @Prop()
+    epics: [Epics]
+
+   
+}
+
+class Epics {
+    @Prop({ unique: true, require: true })
+    name: string;
+
+    @Prop()
+    features: [Features]
+}
+
+class Features {
+    @Prop({ unique: true, require: true })
+    name: string;
+
+    @Prop()
+    productBacklogItem: [ProductBacklogItem]
+}
+
+class ProductBacklogItem {
+    @Prop({ unique: true, require: true })
+    name: string;
+
+    @Prop()
+    task: [Task]
+}
+
+class Task {
+    @Prop({require: true })
     title: string;
 
-    @Prop({require:true})
-    start: string;
+    @Prop()
+    description: string;
 
     @Prop()
-    status:string;
+    user: string;
 
     @Prop()
-    clientname:string;
+    end: string;
 
     @Prop()
-    epics:[]
-
-    @Prop()
-    users:[]
+    color: string;
 }
+
 export const ProjectSchema = SchemaFactory.createForClass(Project);
