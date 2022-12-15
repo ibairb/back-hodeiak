@@ -35,6 +35,11 @@ export class UsersController {
      addUserProject(@Param("projectname") projectname:string, @Param("email") email:string):void {
         this.userService.addUserProject(projectname,email)  
     }
+
+    @Put('/deleteUserProject/:email/:projectname')
+     deleteUserProject(@Param("projectname") projectname:string, @Param("email") email:string):void {
+        this.userService.deleteUserProject(projectname,email)  
+    }
     
     @Delete(':email')
     async deleteUser(@Res() res,@Param("email") email) {
