@@ -15,9 +15,9 @@ export class TaskController {
 
     }//getTasks
 
-    @Get("/:title")
-    async getTask(@Param('title') title:string) : Promise<Task|Object>{
-        return await  this.TaskService.getTask(title);
+    @Get("/:id")
+    async getTask(@Param('id') id:string) : Promise<Task|Object>{
+        return await  this.TaskService.getTask(id);
 
     }//getTask
 
@@ -25,20 +25,22 @@ export class TaskController {
     @Post()
     async createTask(@Body() body: TaskDto):Promise<any> {
                 
-         await this.TaskService.createTask(body);
-
+        await this.TaskService.createTask(body);
         return {messageCreated:`Task created`}
     }
 
-    @Put(":id")
-    updateTask(@Param('id', new ParseIntPipe({errorHttpStatusCode:406})) id: string, @Body() body: TaskDto): void {
+    @Put("/:id")
+    async updateTask(@Param('id') id: string, @Body() body: TaskDto):Promise<any> {
         
-        this.TaskService.updateTask(id,body);
+        await this.TaskService.updateTask(id,body);
+        return {messageCreated:`Task updated`}
+
     }
 
-    @Delete(":id")
-    deleteUser(@Param('id',new ParseIntPipe({errorHttpStatusCode:400})) id: string): void {
-        this.TaskService.deleteTask(id);
+    @Delete("/:id")
+    async deleteUser(@Param('id') id: string):Promise<any> {
+        await this.TaskService.deleteTask(id);
+        return {messageCreated:`Task deleted`}
     }
 
 }//class TaskController

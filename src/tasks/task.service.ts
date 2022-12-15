@@ -12,8 +12,8 @@ export class TaskService {
 
     ) { }
     
-    async getTask(title: string):Promise<Task|Object> {
-        let task= await this.taskModel.findOne({name:title});
+    async getTask(id: string):Promise<Task|Object> {
+        let task= await this.taskModel.findOne({id:id});
         if(task==null) return {error:"Task does not exit"} 
         else  return task;
     }//getTask
@@ -28,14 +28,16 @@ export class TaskService {
 
     }//createTask
 
-    async updateTask(id: string, body: any) {
+    async updateTask(id: string, body: any):Promise<any> {
 
         await this.taskModel.updateOne({ id }, { $set: body });
+        return { messageCreated: `Task updated` }
 
     }//updateTask
 
     async deleteTask(id: string) {
         await this.taskModel.deleteOne({ id });
+        return { messageCreated: `Task deleted` }
     }//deleteTask
 }//class TaskService
 
