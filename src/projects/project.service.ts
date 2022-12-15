@@ -35,22 +35,13 @@ export class ProjectService {
     async updateProject(projectname: string, body: any):Promise<any>  {
         // await this.projectModel.updateOne({ projectname }, { $set: {users: body.users} });
         await this.projectModel.updateOne({ projectname }, { $set: body });
-        return { messageCreated: `PROJECT update` }
+        return { messageCreated: `PROJECT UPDATE` }
     }//updateProject
 
     async deleteProject(projectname: string):Promise<any> {
         await this.projectModel.deleteOne({projectname:projectname});
-
+        return { messageCreated: `PROJECT DELETED` }
     }//deleteProject
-
-
-    //Change atributes
-    // async addUserProject(projectname: string, username:string,epicIndex,featureIndex,pbiIndex,taskIndex) {
-    //   let project: Project = await this.projectModel.findOne({ projectname });
-    //   project.epics[epicIndex].features[featureIndex].productBacklogItem[pbiIndex].task[taskIndex].user=username;
-    //   await this.projectModel.updateOne({ projectname }, { $set: {user:project.epics[epicIndex].features[featureIndex].productBacklogItem[pbiIndex].task[taskIndex].user } });
-    //   return { messageCreated: `USER ADDED TO PROJECT` } 
-    // }//addUserProject
 
 
 }//class ProjectService

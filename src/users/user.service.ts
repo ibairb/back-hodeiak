@@ -34,7 +34,7 @@ export class UsersService {
 
     async addUserProject(projectname:string , email:string):Promise<any> {
            let user= await this.userModel.findOne({ email });
-           //user.projects.push(projectname:projectname);
+           if(user!=null) //user.projects.push("kaka");
            console.log(user.projects, projectname)
            return { messageCreated: ` PROJECT ADDED TO USER` } 
     }//addUserProject
