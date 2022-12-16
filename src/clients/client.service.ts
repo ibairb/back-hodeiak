@@ -32,15 +32,16 @@ export class ClientService {
         return { messageCreated: `CLIENT CREATED` }
 
     }//createClient
-    async updateClient(id: string, body: any) {
+    async updateClient(id: string, body: any):Promise<any> {
 
         await this.clientModel.updateOne({ id }, { $set: body });
+        return { messageCreated: `CLIENT UPDATED` }
 
     }//updateClient
 
-    async deleteClient(name: string) {
+    async deleteClient(name: string):Promise<any> {
         await this.clientModel.deleteOne({ name });
-
+        return { messageCreated: `CLIENT DELETED` }
     }//deleteClient
 
 }//class ClientService
