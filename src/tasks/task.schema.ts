@@ -2,9 +2,8 @@ import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 export type taskDocument = Task & Document;
 @Schema()
 export class Task{
-
-    @Prop({require:true,unique:true})
-    id:string;
+   
+    
     @Prop()
     title:string;
     @Prop()

@@ -5,12 +5,12 @@ export type EpicDocument = Epic & Document;
 
 @Schema()
 export class Epic {
-    @Prop({required:true,unique:true})
-    id:string
+    @Prop()
+    id:number
     @Prop({require:true})
     name:string
-    @Prop()
-    features:[]
+    @Prop({require:true})
+    feature:[]
 
 }
 

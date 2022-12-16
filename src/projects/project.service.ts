@@ -10,13 +10,16 @@ export class ProjectService {
     constructor(
         @InjectModel(Project.name) private projectModel: Model<projectDocument>
 
-    ) { }  
+    ) { }
+    
     async getProject(projectname: string):Promise<Project|Object> {
         let project= await this.projectModel.findOne({projectname:projectname});
         if(project==null) return {error:"Project does not exist"};
         else  return project;
           
-    }//getProject 
+    }//getProject
+
+    
    async getProjects() {
 
         return await this.projectModel.find();
@@ -30,23 +33,21 @@ export class ProjectService {
 
     }//createProject
     async updateProject(projectname: string, body: any):Promise<any>  {
-        
+        // await this.projectModel.updateOne({ projectname }, { $set: {users: body.users} });
         await this.projectModel.updateOne({ projectname }, { $set: body });
-        return { messageCreated: `PROJECT UPDATE` }
+        return { messageCreated: `PROJECT update` }
     }//updateProject
-    async deleteProject(projectname: string):Promise<any> {
+
+    async deleteProject(projectname: string) {
         await this.projectModel.deleteOne({projectname:projectname});
-        return { messageCreated: `PROJECT DELETED` }
+
     }//deleteProject
+    //Change atributes
+    async removeUser(name: string) {
+      let proyecto=this.projectModel.findOne({ name });
+      
+    }//removeUser
 
-    async changeClientProject(projectname: string,clientname:string):Promise<any> {
-        let project=await this.projectModel.deleteOne({projectname:projectname});
-        return { messageCreated: `CLIENT CHANGED IN PROJECT` }
-    }//deleteProject
-
-   
-
-    
 }//class ProjectService
 
 
