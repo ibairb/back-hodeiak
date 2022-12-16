@@ -11,21 +11,19 @@ export class FeatureService {
         @InjectModel(Feature.name) private featureModel: Model<FeatureDocument>
 
     ) { }
-
-    async getFeatures() {
-
-        return await this.featureModel.find();
-    }//getFeatures
     
-    async getFeature(id: string):Promise<Feature|Object> {
-        let feature= await this.featureModel.findOne({id:id});
-        if(feature==null) return {error:"Feature does not exit"};
+    async getFeature(featurename: string):Promise<Feature|Object> {
+        let feature= await this.featureModel.findOne({featurename:featurename});
+        if(feature==null) return {error:"Feature doe not exit"};
         else  return feature;
           
     }//getFeature
 
     
-   
+   async getFeatures() {
+
+        return await this.featureModel.find();
+    }//getClients
 
    async createFeature(body: FeatureDto): Promise<any> {
 
