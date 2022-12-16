@@ -14,7 +14,7 @@ export class ProjectController {
     }//getProjects
 
     @Get("/:projectname")
-    async getProject(@Param('projectname') projectname:string, ) : Promise<Project|Object>{
+    async getProject(@Param('projectname') projectname:string ) : Promise<Project|Object>{
         return await  this.ProjectService.getProject(projectname);
 
     }//getProject
@@ -31,11 +31,10 @@ export class ProjectController {
     updateProject(@Body() body: ProjectDto, @Param('projectname') projectname) : any {
         return this.ProjectService.updateProject(projectname,body);
     }
-       
+
     @Delete(':projectname')
-    async deleteUser(@Param("projectname") projectname) {
-        const projectDeleted = await this.ProjectService.deleteProject(projectname);
-      
+    async deleteProject(@Param("projectname") projectname) {
+        const projectDeleted = await this.ProjectService.deleteProject(projectname);  
     }
 }//class ProjectController
 

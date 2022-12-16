@@ -1,4 +1,5 @@
 export class EpicDTO {
-    username: string;
-    feature:[];   
+    id:string;
+    epicname: string;
+    features:[];   
 }

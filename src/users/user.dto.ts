@@ -5,6 +5,5 @@ export class UserDTO {
     image: string;
     status:string
     hourCost:number;
-    phone:number;
-    
+    projects:[string];    
 }
