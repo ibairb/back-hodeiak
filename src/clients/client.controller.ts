@@ -10,38 +10,31 @@ export class ClientController {
 
 
     @Get()
-    getClients():any  {
-        return  this.ClientService.getClients();
-
+    async getClients():Promise<ClientDto|Object> {
+        return  await this.ClientService.getClients();
     }//getclients
 
     @Get("/:clientname")
     async getClient(@Param('clientname') clientname:string, ) : Promise<Client|Object>{
         return await  this.ClientService.getClient(clientname);
-
     }//getClient
-
 
     @Post()
     async createClient(@Body() body: ClientDto):Promise<any> {
                 
-         await this.ClientService.createClient(body);
-
-        return {messageCreated:`Usuario registrado`}
+        await this.ClientService.createClient(body);
+        return {messageCreated:`USER REGISTERED`}
     }
-
-    
-
     @Put(":id")
-    updateClient(@Param('id', new ParseIntPipe({errorHttpStatusCode:406})) id: string, @Body() body: ClientDto): void {
+    async updateClient(@Param('id') id: string, @Body() body: ClientDto): Promise<any> {
         
-        this.ClientService.updateClient(id,body);
+        await this.ClientService.updateClient(id,body);
+        return {messageCreated:`USER UPDATED`}
     }
-
-   
     @Delete(":id")
-    deleteClient(@Param('id',new ParseIntPipe({errorHttpStatusCode:400})) id: string): void {
-        this.ClientService.deleteClient(id);
+    async deleteClient(@Param('id') id: string): Promise<any> {
+        await this.ClientService.deleteClient(id);
+        return {messageCreated:`USER DELETED`}
        
     }
 
