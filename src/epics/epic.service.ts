@@ -15,10 +15,6 @@ export class EpicService {
         const users = await this.epicModel.find();
         return users
     }
-    async getEpic(id: number): Promise<Epic> {
-        const epic = await this.epicModel.findOne({id}); 
-        return epic;
-    }
 
     async createEpic(body:EpicDTO): Promise<any> {
         const epic= await this.epicModel.collection.insertOne(body);
@@ -33,6 +29,9 @@ export class EpicService {
         await this.epicModel.updateOne({id}, {$set:body});
         
     }
-    
-}//class EpicService
+    async getEpic(id: number): Promise<Epic> {
+        const epic = await this.epicModel.findOne({id}); 
+        return epic;
+    }
+}
 
