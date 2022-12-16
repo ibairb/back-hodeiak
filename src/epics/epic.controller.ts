@@ -4,7 +4,7 @@ import { EpicService } from "./epic.service";
 import { EpicDTO } from "./epic.dto";
 @Controller('epics')
 export class EpicController {
-    constructor(private readonly epicService: EpicService) {}
+    constructor(private epicService: EpicService) {}
 
     @Get()
     async getEpics():Promise<EpicDTO|Object> {
@@ -36,6 +36,11 @@ export class EpicController {
         return {messageCreated:`EPIC UPDATED`} 
     }
 
-   
+    @Get(':id')
+    async getEpic(@Res() res, @Param('id') id) {
+        const epic = await this.epicService.getEpic(id);
+        if (!epic) throw new NotFoundException('Epic does not exist!');
+        return res.status(HttpStatus.OK).json(epic);
+    } 
 }
 
