@@ -35,7 +35,7 @@ export class TaskService {
     }//updateTask
 
     async deleteTask(body: TaskDto): Promise<any>{
-        await this.taskModel.deleteOne({title: body.title});
+        await this.taskModel.deleteOne({id: body.id});
     }//deleteTask
 }//class TaskService
 
