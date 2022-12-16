@@ -31,9 +31,6 @@ export class EpicService {
         await this.epicModel.updateOne({id}, {$set:body});
         
     }
-    async getEpic(id: number): Promise<Epic> {
-        const epic = await this.epicModel.findOne({id}); 
-        return epic;
-    }
+    
 }
 
