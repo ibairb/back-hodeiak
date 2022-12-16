@@ -6,7 +6,7 @@ import { UserDTO } from "./user.dto";
 export class UsersController {
     constructor(private userService: UsersService) {}
 
-        @Post('/create')
+    @Post('/create')
     async createUser(@Body() body: UserDTO):Promise<any> {
         
         return await this.userService.createUser(body);
@@ -32,11 +32,14 @@ export class UsersController {
         this.userService.updateUser(id,body)  
     }
 
-    @Get(':id')
-    async getUser(@Res() res, @Param('id') id) {
-        const user = await this.userService.getUser(id);
-        if (!user) throw new NotFoundException('User does not exist!');
-        return res.status(HttpStatus.OK).json(user);
-    } 
-}
+    @Put('/addUserProject/:email/:projectname')
+     addUserProject(@Param("projectname") projectname:string, @Param("email") email:string):void {
+        this.userService.addUserProject(projectname,email)  
+    }
 
+    @Put('/deleteUserProject/:email/:projectname')
+     deleteUserProject(@Param("projectname") projectname:string, @Param("email") email:string):void {
+        this.userService.deleteUserProject(projectname,email)  
+    }
+    
+    
