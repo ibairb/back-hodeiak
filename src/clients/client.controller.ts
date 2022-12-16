@@ -23,18 +23,18 @@ export class ClientController {
     async createClient(@Body() body: ClientDto):Promise<any> {
                 
         await this.ClientService.createClient(body);
-        return {messageCreated:`USER REGISTERED`}
+        return {messageCreated:`CLIENT REGISTERED`}
     }
     @Put(":id")
     async updateClient(@Param('id') id: string, @Body() body: ClientDto): Promise<any> {
         
         await this.ClientService.updateClient(id,body);
-        return {messageCreated:`USER UPDATED`}
+        return {messageCreated:`CLIENT UPDATED`}
     }
     @Delete(":id")
     async deleteClient(@Param('id') id: string): Promise<any> {
         await this.ClientService.deleteClient(id);
-        return {messageCreated:`USER DELETED`}
+        return {messageCreated:`CLIENT DELETED`}
        
     }
 

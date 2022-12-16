@@ -20,7 +20,7 @@ export class UsersController {
         return res.status(HttpStatus.OK).json(user);
     } 
 
-    @Post('/create')
+    @Post('/')
     async createUser(@Body() body: UserDTO):Promise<any> {
         
         return await this.userService.createUser(body);
