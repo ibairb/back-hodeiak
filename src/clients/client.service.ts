@@ -39,8 +39,8 @@ export class ClientService {
 
     }//updateClient
 
-    async deleteClient(name: string):Promise<any> {
-        await this.clientModel.deleteOne({ name });
+    async deleteClient(id: string):Promise<any> {
+        await this.clientModel.deleteOne({ id });
         return { messageCreated: `CLIENT DELETED` }
     }//deleteClient
 
