@@ -6,5 +6,5 @@ export class UserDTO {
     status:string
     hourCost:number;
     projects:[string];
-    a:string;
+    
 }
