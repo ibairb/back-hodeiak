@@ -32,9 +32,9 @@ export class UsersController {
         this.userService.updateUser(id,body)  
     }
 
-    @Get(':id')
-    async getUser(@Res() res, @Param('id') id) {
-        const user = await this.userService.getUser(id);
+    @Get(':email')
+    async getUser(@Res() res, @Param('email') email) {
+        const user = await this.userService.getUser(email);
         if (!user) throw new NotFoundException('User does not exist!');
         return res.status(HttpStatus.OK).json(user);
     } 

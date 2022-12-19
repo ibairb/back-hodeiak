@@ -30,8 +30,8 @@ export class UsersService {
         await this.userModel.updateOne({id}, {$set:body});
         
     }
-    async getUser(id: number): Promise<User> {
-        const user = await this.userModel.findOne({id}); 
+    async getUser(email: string): Promise<User> {
+        const user = await this.userModel.findOne({email}); 
         return user;
     }
 }
