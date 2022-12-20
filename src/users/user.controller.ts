@@ -17,6 +17,14 @@ export class UsersController {
         const users = await this.userService.getUsers();
         return res.status(HttpStatus.OK).json(users);
     }
+
+    @Get(':email')
+    async getUser(@Res() res, @Param('email') email) {
+        const user = await this.userService.getUser(email);
+        if (!user) throw new NotFoundException('User does not exist!');
+        return res.status(HttpStatus.OK).json(user);
+    }
+
     @Delete(':email')
     async deleteUser(@Res() res,@Param("email") email) {
         const userDeleted = await this.userService.deleteUser(email);
