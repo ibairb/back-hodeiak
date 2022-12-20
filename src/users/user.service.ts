@@ -4,7 +4,6 @@ import { InjectModel } from "@nestjs/mongoose";
 import { User, UserDocument } from './user.schema';
 import { UserDTO } from "./user.dto";
 
-
 @Injectable()
 export class UsersService {
     findById(id: number) {
@@ -16,7 +15,10 @@ export class UsersService {
         const users = await this.userModel.find();
         return users
     }
-
+    async getUser(email: string): Promise<User> {
+        const user = await this.userModel.findOne({email}); 
+        return user;
+    }
     async createUser(body:UserDTO): Promise<any> {
         const user = await this.userModel.collection.insertOne(body);
         return {messageCreated:"Usuario creado!"};
@@ -25,13 +27,23 @@ export class UsersService {
         const deleteUser = await this.userModel.deleteOne({email: email});
         return deleteUser;
     }
-
-    async updateUser(id: string,body:any){
-        await this.userModel.updateOne({id}, {$set:body});
+    async updateUser(email: string,body:any){
+        await this.userModel.updateOne({email}, {$set:body});
         
-    }
-    async getUser(id: number): Promise<User> {
-        const user = await this.userModel.findOne({id}); 
-        return user;
-    }
-}
+    }   
+
+    async addUserProject(projectname:string , email:string):Promise<any> {
+           let user= await this.userModel.findOne({ email });
+           let newarrayuser=[...user.projects,projectname]
+           await this.userModel.updateOne({ email },{$set:{projects:newarrayuser}});
+           return { messageCreated: ` PROJECT ADDED TO USER` } 
+    }//addUserProject
+
+    async deleteUserProject(projectname:string , email:string):Promise<any> {
+        let user= await this.userModel.findOne({ email });
+        let arrayuser=user.projects.filter(name=>name!=projectname)
+        await this.userModel.updateOne({ email },{$set:{projects:arrayuser}});
+        return { messageCreated: ` PROJECT DELETED FROM USER` } 
+ }//deleteUserProject
+   
+}//class UseService
