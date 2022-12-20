@@ -10,7 +10,7 @@ export class FeatureController {
 
 
     @Get()
-    getFeatures():any  {
+    async getFeatures():Promise<FeatureDto|Object>  {
         return  this.FeatureService.getFeatures();
 
     }//getFeatures
@@ -27,21 +27,23 @@ export class FeatureController {
                 
          await this.FeatureService.createFeature(body);
 
-        return {messageCreated:`Feature created`}
+        return {messageCreated:`FEATURE CREATED`}
     }
 
     
 
-    @Put(":id")
-    updateFeature(@Param('id', new ParseIntPipe({errorHttpStatusCode:406})) id: string, @Body() body: FeatureDto): void {
+    @Put("/:id")
+    async updateFeature(@Param('id')id: string, @Body() body: FeatureDto):Promise<any> {
         
-        this.FeatureService.updateFeature(id,body);
+        await this.FeatureService.updateFeature(id,body);
+        return {messageCreated:`FEATURE UPDATED`}
     }
 
    
-    @Delete(":id")
-    deleteFeature(@Param('id',new ParseIntPipe({errorHttpStatusCode:400})) id: string): void {
-        this.FeatureService.deleteFeature(id);
+    @Delete("/:id")
+    async deleteFeature(@Param('id') id: string): Promise<any>{
+        await this.FeatureService.deleteFeature(id);
+        return {messageCreated:`FEATURE DELETED`}
        
     }
 
