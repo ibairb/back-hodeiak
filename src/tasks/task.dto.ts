@@ -1,4 +1,5 @@
 export class TaskDto {
+    id:string
    
     id:string
     title: string
