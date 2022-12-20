@@ -32,5 +32,5 @@ export class EpicService {
         
     }
     
-}//class EpicService
+}
 

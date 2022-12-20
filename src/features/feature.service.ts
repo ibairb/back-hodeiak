@@ -11,11 +11,6 @@ export class FeatureService {
         @InjectModel(Feature.name) private featureModel: Model<FeatureDocument>
 
     ) { }
-
-    async getFeatures() {
-
-        return await this.featureModel.find();
-    }//getFeatures
     
     async getFeature(id: string):Promise<Feature|Object> {
         let feature= await this.featureModel.findOne({id:id});
@@ -23,6 +18,12 @@ export class FeatureService {
         else  return feature;
           
     }//getFeature
+
+    
+   async getFeatures() {
+
+        return await this.featureModel.find();
+    }//getClients
 
    async createFeature(body: FeatureDto): Promise<any> {
 

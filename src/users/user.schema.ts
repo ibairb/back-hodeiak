@@ -8,7 +8,7 @@ export class User {
     @Prop()
     id:string;
     @Prop()
-    username: number;
+    username: string;
     @Prop({require:true,unique:true})
     email:string;
     @Prop({require:true})
@@ -17,10 +17,9 @@ export class User {
     image:string;
     @Prop({require:true})
     status:string;
-    @Prop()
     hourCost:number;
-    @Prop()
-    projects:[];
+    @Prop({require:true})
+    phone:number
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
