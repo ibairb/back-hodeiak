@@ -15,9 +15,9 @@ export class PbiController {
 
     }//getPbis
 
-    @Get("/:pbiname")
-    async getPbi(@Param('pbiname') pbiname:string, ) : Promise<Pbi|Object>{
-        return await  this.PbiService.getPbi(pbiname);
+    @Get("/:id")
+    async getPbi(@Param('id') id:string, ) : Promise<Pbi|Object>{
+        return await  this.PbiService.getPbi(id);
 
     }//getPbi
 
@@ -27,21 +27,24 @@ export class PbiController {
                 
          await this.PbiService.createPbi(body);
 
-        return {messageCreated:`Pbi created`}
+        return {messageCreated:`Pbi CREATED`}
     }
 
     
 
-    @Put(":id")
-    updatePbi(@Param('id', new ParseIntPipe({errorHttpStatusCode:406})) id: string, @Body() body: PbiDto): void {
+    @Put("/:id")
+    async updatePbi(@Param('id') id: string, @Body() body: PbiDto):Promise<any> {
         
-        this.PbiService.updatePbi(id,body);
+        await this.PbiService.updatePbi(id,body);
+        return {messageCreated:`Pbi UPDATED`};
     }
 
    
-    @Delete(":id")
-    deletePbi(@Param('id',new ParseIntPipe({errorHttpStatusCode:400})) id: string): void {
-        this.PbiService.deletePbi(id);
+    @Delete("/:id")
+    async deletePbi(@Param('id') id: string): Promise<any> {
+       await  this.PbiService.deletePbi(id);
+       return {messageCreated:`Pbi DELETED`};
+       
        
     }
 
