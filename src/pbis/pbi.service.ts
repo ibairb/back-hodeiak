@@ -11,8 +11,8 @@ export class PbiService {
         @InjectModel(Pbi.name) private PbiModel: Model<PbiDocument>
 
     ) { }
-    async getPbi(pbiname: string):Promise<Pbi|Object> {
-        let pbi= await this.PbiModel.findOne({pbiname:pbiname});
+    async getPbi(id: string):Promise<Pbi|Object> {
+        let pbi= await this.PbiModel.findOne({id:id});
         if(pbi==null) return {error:"Pbi does not exit"};
         else  return pbi;
           
@@ -30,14 +30,16 @@ export class PbiService {
         return { messageCreated: `Pbi CREATED` }
 
     }//createPbi
-    async updatePbi(id: string, body: any) {
+    async updatePbi(id: string, body: any):Promise<any> {
 
         await this.PbiModel.updateOne({ id }, { $set: body });
+        return { messageCreated: `Pbi UPDATED` }
 
     }//updatePbi
 
-    async deletePbi(name: string) {
-        await this.PbiModel.deleteOne({ name });
+    async deletePbi(id: string):Promise<any> {
+        await this.PbiModel.deleteOne({ id });
+        return  { messageCreated: `Pbi DELETED` }
 
     }//deletePbi
 

@@ -48,6 +48,14 @@ export class ProjectService {
       
     }//removeUser
 
+    async deleteClientProject(projectname: string,clientname:string):Promise<any> {
+        let project=await this.projectModel.deleteOne({projectname:projectname});
+        return { messageCreated: `CLIENT CHANGED IN PROJECT` }
+    }//deleteProject
+
+   
+
+    
 }//class ProjectService
 
 
