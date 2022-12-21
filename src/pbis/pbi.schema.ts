@@ -8,5 +8,7 @@ export class Pbi{
     pbiname: string;
     @Prop()
     tasks: [];
+    @Prop()
+    status: string;
  }
 export const PbiSchema = SchemaFactory.createForClass(Pbi);

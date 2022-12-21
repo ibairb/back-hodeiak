@@ -8,5 +8,7 @@ export class Feature{
     featurename: string;
     @Prop()
     pbis: [];
+    @Prop()
+    status: string;
  }
 export const FeatureSchema = SchemaFactory.createForClass(Feature);
