@@ -16,7 +16,7 @@ export class PbiController {
     }//getPbis
 
     @Get("/:id")
-    async getPbi(@Param('id') id:string, ) : Promise<Pbi|Object>{
+    async getPbi(@Param('id') id:string ) : Promise<Pbi|Object>{
         return await  this.PbiService.getPbi(id);
 
     }//getPbi
@@ -34,6 +34,7 @@ export class PbiController {
 
     @Put("/:id")
     async updatePbi(@Param('id') id: string, @Body() body: PbiDto):Promise<any> {
+        console.log(body);
         
         await this.PbiService.updatePbi(id,body);
         return {messageCreated:`Pbi UPDATED`};
