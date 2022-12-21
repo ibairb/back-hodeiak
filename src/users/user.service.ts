@@ -28,7 +28,7 @@ export class UsersService {
         return deleteUser;
     }
     async updateUser(email: string,body:any){
-        await this.userModel.updateOne({email}, {$set:body});
+        return await this.userModel.updateOne({email}, {$set:body});
         
     }   
 
