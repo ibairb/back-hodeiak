@@ -4,7 +4,8 @@ export type taskDocument = Task & Document;
 export class Task{
     @Prop()
     id:string;
-    
+    @Prop()
+    status:string
     @Prop()
     title:string;
     @Prop()

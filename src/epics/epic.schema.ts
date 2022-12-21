@@ -6,6 +6,8 @@ export type EpicDocument = Epic & Document;
 @Schema()
 export class Epic {
     @Prop()
+    status:string
+    @Prop()
     id:string
     @Prop({require:true})
     name:string

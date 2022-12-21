@@ -2,11 +2,12 @@ import { Body, Controller, Get, Post, Param, Put, Delete, Res, ParseIntPipe } fr
 import { PbiService } from './pbi.service';
 import { PbiDto } from './pbi.dto';
 import { Pbi } from './pbi.schema';
+import { FeatureService } from 'src/features/feature.service';
 
 @Controller('pbis')
 export class PbiController {
 
-    constructor(private readonly PbiService:PbiService) { }
+    constructor(private readonly PbiService:PbiService, private readonly featureService:FeatureService) { }
 
 
     @Get()
@@ -21,6 +22,17 @@ export class PbiController {
 
     }//getPbi
 
+    @Get("pbis-by-feature/:id")
+    async getPbisByFeatureId(@Param('id') id: string): Promise<Pbi|Object> {
+        let feature: any = await this.featureService.getFeature(id);
+        let pbis = feature._doc.pbis.map(async pbi => {
+            return await this.getPbi(pbi)
+        })
+
+        return Promise.all(pbis).then(values =>{
+            return values
+        })
+    }
 
     @Post()
     async createPbi(@Body() body: PbiDto):Promise<any> {
@@ -32,8 +44,9 @@ export class PbiController {
 
     
 
-    @Put("/:id")
+    @Put("/update/:id")
     async updatePbi(@Param('id') id: string, @Body() body: PbiDto):Promise<any> {
+        console.log('updPbi');
         
         await this.PbiService.updatePbi(id,body);
         return {messageCreated:`Pbi UPDATED`};
