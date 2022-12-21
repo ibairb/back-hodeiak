@@ -33,8 +33,10 @@ export class UsersService {
     }   
 
     async updateUserProject(body:any , email:string):Promise<any> {
-           let user= await this.userModel.findOne({ email });
+
            await this.userModel.updateOne({ email },{$set:body});
+           console.log("hola aitor");
+           
            return { messageCreated: ` PROJECT UPDATED TO USER` } 
     }//addUserProject
 
