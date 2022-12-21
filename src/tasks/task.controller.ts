@@ -2,11 +2,12 @@ import { Body, Controller, Get, Post, Param, Put, Delete, Res, ParseIntPipe } fr
 import { TaskService } from './task.service';
 import { TaskDto } from './task.dto';
 import { Task } from './task.schema';
+import { PbiService } from 'src/pbis/pbi.service';
 
 @Controller('tasks')
 export class TaskController {
 
-    constructor(private readonly TaskService: TaskService) { }
+    constructor(private readonly TaskService:TaskService, private readonly pbiService:PbiService) {}
 
 
     @Get()
@@ -35,15 +36,29 @@ export class TaskController {
         return { messageCreated: `Task created` }
     }
 
-    @Put(":id")
-    updateTask(@Param('id', new ParseIntPipe({ errorHttpStatusCode: 406 })) id: string, @Body() body: TaskDto): void {
+    @Put("update/:id")
+    updateTask(@Param('id') id: string, @Body() body: TaskDto): any{
+        console.log('updTasks');
+        
+        return this.TaskService.updateTask(id,body);
 
-        this.TaskService.updateTask(id, body);
+    }
+
+    @Get("tasks-by-pbi/:id")
+    async getTasksByPbiId(@Param('id') id: string): Promise<any> {
+        let pbi: any = await this.pbiService.getPbi(id);
+        let tasks = pbi._doc.tasks.map(async task => {
+            return await this.getTask(task)
+        })
+
+        return Promise.all(tasks).then(values =>{
+            return values
+        })
     }
 
     @Delete()
-    async deleteUser(@Body() body: TaskDto): Promise<any> {
-        await this.TaskService.deleteTask(body);
+    async deleteUser(@Body() body: TaskDto):Promise<any> {
+        return await this.TaskService.deleteTask(body);
     }
 
 }//class TaskController
