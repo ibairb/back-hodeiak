@@ -27,8 +27,10 @@ export class ProjectController {
         return {messageCreated:`Project created`}
     }
 
-    @Put(":projectname")
+    @Put("/update/:projectname")
     updateProject(@Body() body: ProjectDto, @Param('projectname') projectname) : any {
+        console.log('upProj');
+        
         return this.ProjectService.updateProject(projectname,body);
     }
        

@@ -30,12 +30,12 @@ export class TaskService {
 
     async updateTask(id: string, body: any) {
 
-        await this.taskModel.updateOne({ id }, { $set: body });
+        return await this.taskModel.updateOne({ id }, { $set: body });
 
     }//updateTask
 
     async deleteTask(body: TaskDto): Promise<any>{
-        await this.taskModel.deleteOne({title: body.title});
+        return await this.taskModel.deleteOne({title: body.title});
     }//deleteTask
 }//class TaskService
 

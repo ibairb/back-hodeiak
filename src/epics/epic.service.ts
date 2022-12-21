@@ -8,20 +8,24 @@ import { EpicDTO } from "./epic.dto";
 export class EpicService {
     constructor(@InjectModel(Epic.name) private readonly epicModel:Model<EpicDocument>){}
     
-
     async getEpics() {
         return await this.epicModel.find();
-        
     }
+
     async getEpic(id: string): Promise<Epic> {
         return await this.epicModel.findOne({id}); 
-       
     }
+
+    // async getByEpicIdFeatures(id: string): Promise<any> {
+    //     let epicById = await this.epicModel.findOne({id}); 
+    //     return 
+    // }
 
     async createEpic(body:EpicDTO): Promise<any> {
         await this.epicModel.collection.insertOne(body);
         return {messageCreated:"EPIC CREATED"};
     }
+
     async deleteEpic(id: number): Promise<any> {
         await this.epicModel.deleteOne({id: id});
         return {messageCreated:"EPIC DELECTED"};

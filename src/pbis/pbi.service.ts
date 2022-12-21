@@ -10,8 +10,8 @@ export class PbiService {
     constructor(
         @InjectModel(Pbi.name) private PbiModel: Model<PbiDocument>
 
-    ) { }
-    async getPbi(id: string):Promise<Pbi|Object> {
+    ) {}
+    async getPbi(id:string):Promise<Pbi|Object> {
         let pbi= await this.PbiModel.findOne({id:id});
         if(pbi==null) return {error:"Pbi does not exit"};
         else  return pbi;
