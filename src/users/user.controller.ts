@@ -35,7 +35,7 @@ export class UsersController {
         });
     }
 
-    @Put(':email')
+    @Put('/:email')
     updateUser(@Body() body: UserDTO, @Param("email") email:string):void {
         this.userService.updateUser(email,body)  
     }
