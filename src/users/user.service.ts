@@ -28,22 +28,18 @@ export class UsersService {
         return deleteUser;
     }
     async updateUser(email: string,body:any){
-        await this.userModel.updateOne({email}, {$set:body});
+        return await this.userModel.updateOne({email}, {$set:body});
         
     }   
 
-    async addUserProject(projectname:string , email:string):Promise<any> {
-           let user= await this.userModel.findOne({ email });
-           let newarrayuser=[...user.projects,projectname]
-           await this.userModel.updateOne({ email },{$set:{projects:newarrayuser}});
-           return { messageCreated: ` PROJECT ADDED TO USER` } 
+    async updateUserProject(body:any , email:string):Promise<any> {
+
+           await this.userModel.updateOne({ email },{$set:body});
+           console.log("hola aitor");
+           
+           return { messageCreated: ` PROJECT UPDATED TO USER` } 
     }//addUserProject
 
-    async deleteUserProject(projectname:string , email:string):Promise<any> {
-        let user= await this.userModel.findOne({ email });
-        let arrayuser=user.projects.filter(name=>name!=projectname)
-        await this.userModel.updateOne({ email },{$set:{projects:arrayuser}});
-        return { messageCreated: ` PROJECT DELETED FROM USER` } 
- }//deleteUserProject
+    
    
 }//class UseService

@@ -31,7 +31,8 @@ export class PbiService {
 
     }//createPbi
     async updatePbi(id: string, body: any):Promise<any> {
-
+        console.log(body);
+        
         await this.PbiModel.updateOne({ id }, { $set: body });
         return { messageCreated: `Pbi UPDATED` }
 

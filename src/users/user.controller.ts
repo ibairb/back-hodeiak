@@ -35,20 +35,18 @@ export class UsersController {
         });
     }
 
-    @Put(':id')
-    updateUser(@Body() body: UserDTO, @Param("id") id:string):void {
-        this.userService.updateUser(id,body)  
+    @Put('/:email')
+    updateUser(@Body() body: UserDTO, @Param("email") email:string):void {
+        this.userService.updateUser(email,body)  
     }
 
-    @Put('/addUserProject/:email/:projectname')
-     addUserProject(@Param("projectname") projectname:string, @Param("email") email:string):void {
-        this.userService.addUserProject(projectname,email)  
+    @Put('/updateUserProject/:email')
+     updateUserProject(@Body() body: UserDTO, @Param("email") email:string):any {
+        
+        return this.userService.updateUserProject(body,email)  
+        
     }
 
-    @Put('/deleteUserProject/:email/:projectname')
-     deleteUserProject(@Param("projectname") projectname:string, @Param("email") email:string):void {
-        this.userService.deleteUserProject(projectname,email)  
-    }
     
     
 }

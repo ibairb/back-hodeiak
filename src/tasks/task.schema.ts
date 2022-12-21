@@ -14,6 +14,6 @@ export class Task{
     @Prop()
     end:string;
     @Prop()
-    color:string;
+    status:string;
     }
 export const TaskSchema = SchemaFactory.createForClass(Task);
