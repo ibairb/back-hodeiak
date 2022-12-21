@@ -3,6 +3,8 @@ export type PbiDocument = Pbi & Document;
 @Schema()
 export class Pbi{
     @Prop()
+    id: string;
+    @Prop()
     pbiname: string;
     @Prop()
     tasks: [];

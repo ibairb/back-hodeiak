@@ -16,7 +16,7 @@ export class FeatureController {
     }//getFeatures
 
     @Get("/:featurename")
-    async getFeature(@Param('featurename') featurename:string, ) : Promise<Feature|Object>{
+    async getFeature(@Param('featurename') featurename:string ) : Promise<Feature|Object>{
         return await  this.FeatureService.getFeature(featurename);
 
     }//getFeature

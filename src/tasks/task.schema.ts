@@ -4,7 +4,6 @@ export type taskDocument = Task & Document;
 export class Task{
     @Prop()
     id:string;
-    
     @Prop()
     title:string;
     @Prop()
@@ -14,6 +13,6 @@ export class Task{
     @Prop()
     end:string;
     @Prop()
-    color:string;
+    status:string;
     }
 export const TaskSchema = SchemaFactory.createForClass(Task);
