@@ -40,15 +40,11 @@ export class UsersController {
         this.userService.updateUser(id,body)  
     }
 
-    @Put('/addUserProject/:email/:projectname')
-     addUserProject(@Param("projectname") projectname:string, @Param("email") email:string):void {
-        this.userService.addUserProject(projectname,email)  
+    @Put('/addUserProject/:email')
+     updateUserProject(@Body() body: UserDTO, @Param("email") email:string):void {
+        this.userService.updateUserProject(body,email)  
     }
 
-    @Put('/deleteUserProject/:email/:projectname')
-     deleteUserProject(@Param("projectname") projectname:string, @Param("email") email:string):void {
-        this.userService.deleteUserProject(projectname,email)  
-    }
     
     
 }
