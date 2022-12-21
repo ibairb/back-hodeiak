@@ -40,9 +40,11 @@ export class UsersController {
         this.userService.updateUser(id,body)  
     }
 
-    @Put('/addUserProject/:email')
-     updateUserProject(@Body() body: UserDTO, @Param("email") email:string):void {
-        this.userService.updateUserProject(body,email)  
+    @Put('/updateUserProject/:email')
+     updateUserProject(@Body() body: UserDTO, @Param("email") email:string):any {
+        
+        return this.userService.updateUserProject(body,email)  
+        
     }
 
     
