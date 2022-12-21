@@ -17,6 +17,11 @@ export class TaskService {
         if(task==null) return {error:"Task does not exit"} 
         else  return task;
     }//getTask
+
+    async getUserTask(user: string) : Promise<Task|Object>  {
+        return await this.taskModel.find({user:user})
+    }
+
     async getTasks() {
 
         return await this.taskModel.find();

@@ -6,38 +6,43 @@ import { Task } from './task.schema';
 @Controller('tasks')
 export class TaskController {
 
-    constructor(private readonly TaskService:TaskService) {}
+    constructor(private readonly TaskService: TaskService) { }
 
 
     @Get()
-    getTasks():any  {
-        return  this.TaskService.getTasks();
+    getTasks(): any {
+        return this.TaskService.getTasks();
 
     }//getTasks
 
     @Get("/:taskname")
-    async getTask(@Param('taskname') taskname:string) : Promise<Task|Object>{
-        return await  this.TaskService.getTask(taskname);
+    async getTask(@Param('taskname') taskname: string): Promise<Task | Object> {
+        return await this.TaskService.getTask(taskname);
 
     }//getUser
 
+    @Get('/search/:user')
+    async getUserTask(@Param('user') user: string): Promise<Task | Object> {
+        return await this.TaskService.getUserTask(user)
+    }
+
 
     @Post()
-    async createTask(@Body() body: TaskDto):Promise<any> {
-                
-         await this.TaskService.createTask(body);
+    async createTask(@Body() body: TaskDto): Promise<any> {
 
-        return {messageCreated:`Task created`}
+        await this.TaskService.createTask(body);
+
+        return { messageCreated: `Task created` }
     }
 
     @Put(":id")
-    updateTask(@Param('id', new ParseIntPipe({errorHttpStatusCode:406})) id: string, @Body() body: TaskDto): void {
-        
-        this.TaskService.updateTask(id,body);
+    updateTask(@Param('id', new ParseIntPipe({ errorHttpStatusCode: 406 })) id: string, @Body() body: TaskDto): void {
+
+        this.TaskService.updateTask(id, body);
     }
 
     @Delete()
-    async deleteUser(@Body() body: TaskDto):Promise<any> {
+    async deleteUser(@Body() body: TaskDto): Promise<any> {
         await this.TaskService.deleteTask(body);
     }
 
