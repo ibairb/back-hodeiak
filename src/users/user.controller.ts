@@ -35,9 +35,9 @@ export class UsersController {
         });
     }
 
-    @Put(':id')
-    updateUser(@Body() body: UserDTO, @Param("id") id:string):void {
-        this.userService.updateUser(id,body)  
+    @Put(':email')
+    updateUser(@Body() body: UserDTO, @Param("email") email:string):void {
+        this.userService.updateUser(email,body)  
     }
 
     @Put('/updateUserProject/:email')
