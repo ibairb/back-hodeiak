@@ -14,7 +14,6 @@ export class Task{
     user:string;
     @Prop()
     end:string;
-    @Prop()
-    status:string;
+    
     }
 export const TaskSchema = SchemaFactory.createForClass(Task);
