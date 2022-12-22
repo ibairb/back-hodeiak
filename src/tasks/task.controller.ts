@@ -11,24 +11,29 @@ export class TaskController {
 
 
     @Get()
-    getTasks():any  {
-        return  this.TaskService.getTasks();
+    getTasks(): any {
+        return this.TaskService.getTasks();
 
     }//getTasks
 
     @Get("/:taskname")
-    async getTask(@Param('taskname') taskname:string) : Promise<Task|Object>{
-        return await  this.TaskService.getTask(taskname);
+    async getTask(@Param('taskname') taskname: string): Promise<Task | Object> {
+        return await this.TaskService.getTask(taskname);
 
     }//getUser
 
+    @Get('/search/:user')
+    async getUserTask(@Param('user') user: string): Promise<Task | Object> {
+        return await this.TaskService.getUserTask(user)
+    }
+
 
     @Post()
-    async createTask(@Body() body: TaskDto):Promise<any> {
-                
-         await this.TaskService.createTask(body);
+    async createTask(@Body() body: TaskDto): Promise<any> {
 
-        return {messageCreated:`Task created`}
+        await this.TaskService.createTask(body);
+
+        return { messageCreated: `Task created` }
     }
 
     @Put("update/:id")
@@ -51,17 +56,9 @@ export class TaskController {
         })
     }
 
-    @Delete()
-    async deleteUser(@Body() body: TaskDto):Promise<any> {
-        return await this.TaskService.deleteTask(body);
+    @Delete('/:id')
+    async deleteUser(@Param('id') id: string):Promise<any> {
+        return await this.TaskService.deleteTask(id);
     }
 
 }//class TaskController
-
-
-
-
-
-
-
-
