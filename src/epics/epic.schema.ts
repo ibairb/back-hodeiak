@@ -13,8 +13,6 @@ export class Epic {
     name:string
     @Prop({require:true})
     feature:[]
-    @Prop()
-    status:string
 
 }
 
